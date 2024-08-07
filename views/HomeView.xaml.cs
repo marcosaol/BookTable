@@ -4,8 +4,8 @@ public partial class HomeView : ContentPage
 {
 	public HomeView()
 	{
-		InitializeComponent();
-		BindingContext = new HomeViewModel();
+        InitializeComponent();
+        BindingContext = new HomeViewModel();
         
     }
 }

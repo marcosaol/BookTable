@@ -9,41 +9,42 @@ using System.Text;
 using System.Threading.Tasks;
 using BookTable.Views.Popups;
 using BookTable.Models;
+using System.Collections.ObjectModel;
 
 namespace BookTable.ViewModel
 {
     public partial class HomeViewModel : ObservableObject
     {
-        private Thickness _buttonMargin;
+     
+        public ObservableCollection<Paste> Pastes { get; set; }
+        private double _heightPaste;
+        private double _widthPaste;
         public HomeViewModel()
         {
-            ButtonMargin = new Thickness(0, DeviceInfoModel.ScreenHeight - 250, 0, 0);
+            Pastes = new ObservableCollection<Paste>();
+            HeightPaste = DeviceInfoModel.ScreenHeight - DeviceInfoModel.ScreenHeight / 3.5;
+            WidthPaste = DeviceInfoModel.ScreenWidth + 10;
             //Create the command for showing a popup
             ShowOptionsCommand = new AsyncRelayCommand(ShowOptionsAsync);
         }
         //Initialize the command as asyn
         public IAsyncRelayCommand ShowOptionsCommand { get; }
 
-        public Thickness ButtonMargin
+        public double HeightPaste
         {
-            get => _buttonMargin;
+            get => _heightPaste;
+            set => SetProperty(ref _heightPaste, value);
+        }
+        public double WidthPaste
+        {
+            get => _widthPaste;
             set
             {
-                //Compares if the actual value is different of the value assigned at the construtor
-                if (_buttonMargin != value)
-                {
-                    _buttonMargin = value;
-                    OnPropertyChanged(nameof(ButtonMargin));
-                }
+                _widthPaste = value;
+                OnPropertyChanged(nameof(WidthPaste));
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         //This happens whe the user click the button
         private async Task ShowOptionsAsync()
         {
@@ -55,7 +56,9 @@ namespace BookTable.ViewModel
                 // Processes the choice of the user
                 if (result != null)
                 {
-                    // Realize a ação necessária com base na escolha do usuário
+                    var popup = new NewPastePopup();
+                    await page.ShowPopupAsync(popup);
+                    Pastes.Add(new Paste { Name = popup.PasteName });
                 }
             }
         }

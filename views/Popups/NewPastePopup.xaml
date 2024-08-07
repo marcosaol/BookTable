@@ -3,27 +3,25 @@
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                 xmlns:popups="clr-namespace:BookTable.Views.Popups"
-               x:Class="BookTable.Views.Popups.SelectionPopup">
+               x:Class="BookTable.Views.Popups.NewPastePopup">
 
     <toolkit:Popup.Resources>
-        <Style TargetType="{x:Type popups:SelectionPopup}">
+        <Style TargetType="{x:Type popups:NewPastePopup}">
             <Setter Property="Color" Value="#171514" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalOptions" Value="Start" />
             <Setter Property="CanBeDismissedByTappingOutsideOfPopup" Value="True" />
         </Style>
-        
+
     </toolkit:Popup.Resources>
-    
+
     <VerticalStackLayout Padding="20" Spacing="15" >
 
-        <Label Text="Escolha uma opção:" FontSize="Medium" FontAttributes="Bold" />
-        <Button Text="Criar pasta" 
-         BackgroundColor="#d2aa08"
-         Clicked="OnNewPasteClicked"/>
-        <Button Text="Cancelar"  
+        <Label Text="Digite o nome da pasta:" FontSize="Medium" />
+        <Entry Placeholder="Digite aqui" Text="{Binding EntryText}" x:Name="PasteEntry" />
+        <Button Text="Criar Pasta"  
         BackgroundColor="#d2aa08"
-        Clicked="OnCancelClicked"/>
-       
+        Clicked="OnCreatePasteClicked"/>
+
     </VerticalStackLayout>
 </toolkit:Popup>

@@ -2,36 +2,76 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookTable.Views.HomeView"
-             BackgroundColor="#363535">
+             BackgroundColor="#171514">
+
 
 
         <VerticalStackLayout>
 
-        <Grid>
+            <Grid>
 
-            <BoxView Color="#171514"
+                <BoxView Color="#171514"
                  HeightRequest="80"
-                 HorizontalOptions="FillAndExpand" />
+                 HorizontalOptions="FillAndExpand" 
+                 />
 
-            <Image Source="booktable.png"
+                <Image Source="booktable.png"
                HeightRequest="80"
                WidthRequest="200"
                HorizontalOptions="Start"/>
 
+            </Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding HeightPaste}" />
+                <!-- Linha para o Frame -->
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Row="1"
+           Padding="1"
+           BackgroundColor="#0d0c0c"
+           HeightRequest="{Binding HeightPaste}"
+           WidthRequest="{Binding WidthPaste}"
+           VerticalOptions="FillAndExpand"
+           HorizontalOptions="FillAndExpand"
+           CornerRadius="0">
+                <CollectionView ItemsSource="{Binding Pastes}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                           Margin="0, 1, 0 , 0"
+                           BackgroundColor="#121110"
+                           HasShadow="False"
+                           CornerRadius="0"
+                           BorderColor="Black"
+                           HeightRequest="60"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="FillAndExpand"
+                           >
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontSize="14" HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
         </Grid>
-           
-            
-            <Frame WidthRequest="70"
+
+
+
+        <Frame WidthRequest="70"
                HeightRequest="70"
                CornerRadius="40"
                BackgroundColor="#d2aa08"
                HasShadow="False"
                HorizontalOptions="Center"
                VerticalOptions="FillAndExpand"
-               Margin="{Binding ButtonMargin}"
+               Margin="0,10,0,0"
                x:Name="ButtonFrame">
 
-            <Button Text="+"
+                <Button Text="+"
                     FontSize="35"
                     TextColor="White"
                     BackgroundColor="Transparent"
@@ -42,8 +82,8 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Command="{Binding ShowOptionsCommand}"/>
-        </Frame>
-            
+            </Frame>
+
         </VerticalStackLayout>
-    
+  
 </ContentPage>
