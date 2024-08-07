@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BookTable.views.HomeView"
+             x:Class="BookTable.Views.HomeView"
              BackgroundColor="#363535">
+
 
         <VerticalStackLayout>
 
@@ -20,27 +21,28 @@
         </Grid>
            
             
-            <Frame WidthRequest="80"
-               HeightRequest="80"
+            <Frame WidthRequest="70"
+               HeightRequest="70"
                CornerRadius="40"
-               BackgroundColor="#ffde59"
+               BackgroundColor="#d2aa08"
                HasShadow="False"
                HorizontalOptions="Center"
                VerticalOptions="FillAndExpand"
-               Margin="20"
+               Margin="{Binding ButtonMargin}"
                x:Name="ButtonFrame">
 
-                <Button Text="+"
-                    FontSize="40"
+            <Button Text="+"
+                    FontSize="35"
                     TextColor="White"
                     BackgroundColor="Transparent"
                     BorderColor="Transparent"
                     CornerRadius="40"
-                    HeightRequest="80"
-                    WidthRequest="80"
+                    HeightRequest="70"
+                    WidthRequest="70"
                     HorizontalOptions="Center"
-                    VerticalOptions="Center"/>
-            </Frame>
+                    VerticalOptions="Center"
+                    Command="{Binding ShowOptionsCommand}"/>
+        </Frame>
             
         </VerticalStackLayout>
     
