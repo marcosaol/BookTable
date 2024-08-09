@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookTable.Views.HomeView"
-             BackgroundColor="#171514">
+             BackgroundColor="#000">
 
 
 
@@ -16,6 +16,7 @@
                  />
 
                 <Image Source="booktable.png"
+               Margin="5, 0, 0, 0"
                HeightRequest="80"
                WidthRequest="200"
                HorizontalOptions="Start"/>
@@ -25,12 +26,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="{Binding HeightPaste}" />
-                <!-- Linha para o Frame -->
             </Grid.RowDefinitions>
 
-            <Frame Grid.Row="1"
-           Padding="1"
-           BackgroundColor="#0d0c0c"
+            <ScrollView VerticalScrollBarVisibility="Always">
+                <Frame Grid.Row="1"
+           Padding="0, 1, 0, 0"
+           BackgroundColor="#000"
+           BorderColor="Black"
            HeightRequest="{Binding HeightPaste}"
            WidthRequest="{Binding WidthPaste}"
            VerticalOptions="FillAndExpand"
@@ -40,35 +42,46 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame
-                           Margin="0, 1, 0 , 0"
-                           BackgroundColor="#121110"
+                           Margin="0, 0, 0 , 1"
+                           BackgroundColor="#16384C"
                            HasShadow="False"
                            CornerRadius="0"
-                           BorderColor="Black"
+                           BorderColor="#171514"
                            HeightRequest="60"
                            VerticalOptions="FillAndExpand"
                            HorizontalOptions="FillAndExpand"
                            >
-                                <StackLayout>
-                                    <Label Text="{Binding Name}" FontSize="14" HorizontalOptions="FillAndExpand"  />
-                                </StackLayout>
-                            </Frame>
+                                    <StackLayout  Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" FontSize="14" HorizontalOptions="StartAndExpand"  />
+                                        <Button Text="+" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center"
+                                        WidthRequest="20"
+                                        BackgroundColor="Transparent"
+                                        TextColor="#171514"
+                                        BorderWidth="0"/>
+                                        <ImageButton Source="trash.png"
+                                        HorizontalOptions="EndAndExpand"
+                                        HeightRequest="20"
+                                        WidthRequest="20"
+                                        VerticalOptions="End" />
+                                    </StackLayout>
+                                </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </Frame>
-        </Grid>
+            </ScrollView>
 
 
 
-        <Frame WidthRequest="70"
-               HeightRequest="70"
+            <Frame WidthRequest="60"
+               HeightRequest="60"
                CornerRadius="40"
                BackgroundColor="#d2aa08"
+               BorderColor="Transparent"
                HasShadow="False"
                HorizontalOptions="Center"
                VerticalOptions="FillAndExpand"
-               Margin="0,10,0,0"
+               Margin="{Binding ButtonMargin}"
                x:Name="ButtonFrame">
 
                 <Button Text="+"
@@ -83,7 +96,8 @@
                     VerticalOptions="Center"
                     Command="{Binding ShowOptionsCommand}"/>
             </Frame>
+        </Grid>
 
-        </VerticalStackLayout>
+    </VerticalStackLayout>
   
 </ContentPage>

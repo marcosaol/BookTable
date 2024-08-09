@@ -19,11 +19,14 @@ namespace BookTable.ViewModel
         public ObservableCollection<Paste> Pastes { get; set; }
         private double _heightPaste;
         private double _widthPaste;
+        private Thickness _buttonMargin;
         public HomeViewModel()
         {
+            LoadPastesAsync();
             Pastes = new ObservableCollection<Paste>();
-            HeightPaste = DeviceInfoModel.ScreenHeight - DeviceInfoModel.ScreenHeight / 3.5;
+            HeightPaste = DeviceInfoModel.ScreenHeight - DeviceInfoModel.ScreenHeight / 6;
             WidthPaste = DeviceInfoModel.ScreenWidth + 10;
+            ButtonMargin = new Thickness(0, DeviceInfoModel.ScreenHeight - DeviceInfoModel.ScreenHeight/3.6, 0, 0);
             //Create the command for showing a popup
             ShowOptionsCommand = new AsyncRelayCommand(ShowOptionsAsync);
         }
@@ -38,11 +41,12 @@ namespace BookTable.ViewModel
         public double WidthPaste
         {
             get => _widthPaste;
-            set
-            {
-                _widthPaste = value;
-                OnPropertyChanged(nameof(WidthPaste));
-            }
+            set => SetProperty(ref _widthPaste, value);
+        }
+        public Thickness ButtonMargin
+        {
+            get => _buttonMargin;
+            set => SetProperty(ref _buttonMargin, value);
         }
 
         //This happens whe the user click the button
@@ -58,8 +62,23 @@ namespace BookTable.ViewModel
                 {
                     var popup = new NewPastePopup();
                     await page.ShowPopupAsync(popup);
+                    var newPaste = new Paste { Name = popup.PasteName};
                     Pastes.Add(new Paste { Name = popup.PasteName });
+                    await DatabaseHelper.Database.InsertAsync(newPaste);
                 }
+            }
+        }
+        [RelayCommand]
+        public async Task LoadPastesAsync()
+        {
+            var pastes = await DatabaseHelper.Database.Table<Paste>().ToListAsync();
+
+            if (Pastes.Count > 0)
+                Pastes.Clear();
+
+            foreach (var paste in pastes)
+            {
+                Pastes.Add(paste); 
             }
         }
     }
