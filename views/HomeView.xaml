@@ -43,32 +43,41 @@
                         <DataTemplate>
                             <Frame
                            Margin="0, 0, 0 , 1"
-                           BackgroundColor="#16384C"
+                           BackgroundColor="#000"
                            HasShadow="False"
                            CornerRadius="0"
-                           BorderColor="#171514"
-                           HeightRequest="60"
+                           BorderColor="#000"
+                           HeightRequest="80"
                            VerticalOptions="FillAndExpand"
                            HorizontalOptions="FillAndExpand"
                            >
                                     <StackLayout  Orientation="Horizontal">
-                                        <Label Text="{Binding Name}" FontSize="14" HorizontalOptions="StartAndExpand"  />
-                                        <Button Text="+" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center"
-                                        WidthRequest="20"
-                                        BackgroundColor="Transparent"
-                                        TextColor="#171514"
-                                        BorderWidth="0"/>
+                                        <Image Source="paste.png"
+                                        HorizontalOptions="Start"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        Margin="0, 0, 10, 0"
+                                        VerticalOptions="Center" />
+                                        <Label Text="{Binding Name}" FontSize="14" HorizontalOptions="StartAndExpand" 
+                                        VerticalOptions="Center" />
                                         <ImageButton Source="trash.png"
                                         HorizontalOptions="EndAndExpand"
                                         HeightRequest="20"
                                         WidthRequest="20"
-                                        VerticalOptions="End" />
+                                        VerticalOptions="Center" />
                                     </StackLayout>
+                                    <!--This Makes the frame clickable-->
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.ToggleExpandCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                        CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
                                 </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </Frame>
+                  
+       
+                </Frame>
             </ScrollView>
 
 

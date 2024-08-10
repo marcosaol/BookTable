@@ -11,6 +11,7 @@ namespace BookTable.Models
 {
     public static class DatabaseHelper
     {
+
         private static SQLiteAsyncConnection _database;
 
         public static SQLiteAsyncConnection Database
