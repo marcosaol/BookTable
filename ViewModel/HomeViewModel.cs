@@ -17,8 +17,11 @@ namespace BookTable.ViewModel
     {
      
         public ObservableCollection<Paste> Pastes { get; set; }
+        [ObservableProperty]
         private double _heightPaste;
+        [ObservableProperty]
         private double _widthPaste;
+        [ObservableProperty]
         private Thickness _buttonMargin;
         public HomeViewModel()
         {
@@ -33,26 +36,11 @@ namespace BookTable.ViewModel
         //Initialize the command as asyn
         public IAsyncRelayCommand ShowOptionsCommand { get; }
 
-        public double HeightPaste
-        {
-            get => _heightPaste;
-            set => SetProperty(ref _heightPaste, value);
-        }
-        public double WidthPaste
-        {
-            get => _widthPaste;
-            set => SetProperty(ref _widthPaste, value);
-        }
-        public Thickness ButtonMargin
-        {
-            get => _buttonMargin;
-            set => SetProperty(ref _buttonMargin, value);
-        }
 
         //This happens whe the user click the button
         private async Task ShowOptionsAsync()
         {
-            // This clarify that this call need to be im a page
+            // This clarify that this call need to be in a page
             if (Application.Current.MainPage is Page page)
             {
                 //Creates the SelectionPopup
@@ -68,7 +56,6 @@ namespace BookTable.ViewModel
                 }
             }
         }
-        [RelayCommand]
         public async Task LoadPastesAsync()
         {
             var pastes = await DatabaseHelper.Database.Table<Paste>().ToListAsync();

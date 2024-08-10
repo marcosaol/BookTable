@@ -60,8 +60,14 @@
                                         VerticalOptions="Center" />
                                         <Label Text="{Binding Name}" FontSize="14" HorizontalOptions="StartAndExpand" 
                                         VerticalOptions="Center" />
+                                        <ImageButton Source="add.png"
+                                        HorizontalOptions="End"
+                                        HeightRequest="20"
+                                        WidthRequest="20"
+                                        Margin="0, 0, 15, 0"
+                                        VerticalOptions="Center" />
                                         <ImageButton Source="trash.png"
-                                        HorizontalOptions="EndAndExpand"
+                                        HorizontalOptions="End"
                                         HeightRequest="20"
                                         WidthRequest="20"
                                         VerticalOptions="Center" />

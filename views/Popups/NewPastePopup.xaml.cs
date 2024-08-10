@@ -19,4 +19,5 @@ public partial class NewPastePopup : Popup
         PasteName = PasteEntry.Text;
         Close();
     }
+
 }
