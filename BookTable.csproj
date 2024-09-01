@@ -72,6 +72,9 @@
 	  <MauiXaml Update="Views\Popups\Alert.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\NewArquivePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Popups\NewPastePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

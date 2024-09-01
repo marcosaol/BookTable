@@ -57,6 +57,14 @@ namespace BookTable.ViewModel
                     Pastes.Add(new Paste { Name = popup.PasteName });
                     await DatabaseHelper.Database.InsertAsync(newPaste);
                 }
+                if (result.Choice == 2)
+                {
+                    var popup = new NewPastePopup();
+                    await page.ShowPopupAsync(popup);
+                    var newPaste = new Paste { Name = popup.PasteName };
+                    Pastes.Add(new Paste { Name = popup.PasteName });
+                    await DatabaseHelper.Database.InsertAsync(newPaste);
+                }
             }
         }
         public async Task LoadPastesAsync()

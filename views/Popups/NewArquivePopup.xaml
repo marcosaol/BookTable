@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                xmlns:popups="clr-namespace:BookTable.Views.Popups"
+               x:Class="BookTable.Views.Popups.NewArquivePopup">
+
+    <toolkit:Popup.Resources>
+        <Style TargetType="{x:Type popups:NewArquivePopup}">
+            <Setter Property="Color" Value="#171514" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="CanBeDismissedByTappingOutsideOfPopup" Value="True" />
+        </Style>
+
+    </toolkit:Popup.Resources>
+
+    <VerticalStackLayout Padding="20" Spacing="15" >
+
+        <Label Text="Digite o nome do arquivo:" FontSize="Medium" />
+        <Entry Placeholder="Digite aqui" Text="{Binding EntryText}" x:Name="PasteEntry" />
+        <Button Text="Criar Pasta"  
+        BackgroundColor="#d2aa08"
+        Clicked="OnCreateArquiveClicked"/>
+
+    </VerticalStackLayout>
+</toolkit:Popup>
