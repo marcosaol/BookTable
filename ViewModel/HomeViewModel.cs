@@ -17,6 +17,7 @@ namespace BookTable.ViewModel
     {
      
         public ObservableCollection<Paste> Pastes { get; set; }
+        public ObservableCollection<Arquive> Arquives { get; set; }
         [ObservableProperty]
         private double _heightPaste;
         [ObservableProperty]
@@ -27,6 +28,7 @@ namespace BookTable.ViewModel
         {
             LoadPastesAsync();
             Pastes = new ObservableCollection<Paste>();
+            Arquives = new ObservableCollection<Arquive>();
             HeightPaste = DeviceInfoModel.ScreenHeight - DeviceInfoModel.ScreenHeight / 6;
             WidthPaste = DeviceInfoModel.ScreenWidth + 10;
             ButtonMargin = new Thickness(0, DeviceInfoModel.ScreenHeight - DeviceInfoModel.ScreenHeight/3.6, 0, 0);
@@ -44,9 +46,10 @@ namespace BookTable.ViewModel
             if (Application.Current.MainPage is Page page)
             {
                 //Creates the SelectionPopup
-                var result = await page.ShowPopupAsync(new SelectionPopup());
+                var result = new SelectionPopup();
+                await page.ShowPopupAsync(result);
                 // Processes the choice of the user
-                if (result != null)
+                if (result.Choice == 1)
                 {
                     var popup = new NewPastePopup();
                     await page.ShowPopupAsync(popup);

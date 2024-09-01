@@ -6,22 +6,22 @@
 
 
 
-        <VerticalStackLayout>
+    <VerticalStackLayout>
 
-            <Grid>
+        <Grid>
 
-                <BoxView Color="#171514"
+            <BoxView Color="#171514"
                  HeightRequest="80"
                  HorizontalOptions="FillAndExpand" 
                  />
 
-                <Image Source="booktable.png"
+            <Image Source="booktable.png"
                Margin="5, 0, 0, 0"
                HeightRequest="80"
                WidthRequest="200"
                HorizontalOptions="Start"/>
 
-            </Grid>
+        </Grid>
 
         <Grid>
             <Grid.RowDefinitions>
@@ -38,19 +38,10 @@
            VerticalOptions="FillAndExpand"
            HorizontalOptions="FillAndExpand"
            CornerRadius="0">
-                <CollectionView ItemsSource="{Binding Pastes}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame
-                           Margin="0, 0, 0 , 1"
-                           BackgroundColor="#000"
-                           HasShadow="False"
-                           CornerRadius="0"
-                           BorderColor="#000"
-                           HeightRequest="80"
-                           VerticalOptions="FillAndExpand"
-                           HorizontalOptions="FillAndExpand"
-                           >
+                    <CollectionView ItemsSource="{Binding Pastes}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Style="{StaticResource CollectionViewFrameStyle}">
                                     <StackLayout  Orientation="Horizontal">
                                         <Image Source="paste.png"
                                         HorizontalOptions="Start"
@@ -62,14 +53,15 @@
                                         VerticalOptions="Center" />
                                         <ImageButton Source="add.png"
                                         HorizontalOptions="End"
-                                        HeightRequest="20"
-                                        WidthRequest="20"
-                                        Margin="0, 0, 15, 0"
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        Margin="0, 0, 10, 0"
                                         VerticalOptions="Center" />
                                         <ImageButton Source="trash.png"
                                         HorizontalOptions="End"
-                                        HeightRequest="20"
-                                        WidthRequest="20"
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        Margin="0, 0, 10, 0"
                                         VerticalOptions="Center" />
                                     </StackLayout>
                                     <!--This Makes the frame clickable-->
@@ -78,11 +70,11 @@
                                         CommandParameter="{Binding .}" />
                                     </Frame.GestureRecognizers>
                                 </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                  
-       
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
                 </Frame>
             </ScrollView>
 
@@ -114,5 +106,5 @@
         </Grid>
 
     </VerticalStackLayout>
-  
+
 </ContentPage>

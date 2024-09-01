@@ -21,6 +21,9 @@
         <Button Text="Criar pasta" 
          BackgroundColor="#d2aa08"
          Clicked="OnNewPasteClicked"/>
+        <Button Text="Abrir Arquivo"
+         BackgroundColor="#d2aa08"
+         Clicked="OnOpenArquiveClicked"/>
         <Button Text="Cancelar"  
         BackgroundColor="#d2aa08"
         Clicked="OnCancelClicked"/>
